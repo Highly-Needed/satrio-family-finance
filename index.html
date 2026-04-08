@@ -130,7 +130,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cmi:last-child{border-bottom:none;}
 .cmi-emoji{font-size:22px;width:36px;text-align:center;flex-shrink:0;}
 .cmi-info{flex:1;min-width:0;}.cmi-name{font-size:14px;font-weight:700;}.cmi-bud{font-size:12px;color:var(--textl);}
+.cmi-actions{display:flex;gap:6px;flex-shrink:0;}
+.cmi-edit{width:30px;height:30px;border-radius:8px;border:none;background:var(--plight);color:var(--primary);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
 .cmi-del{width:30px;height:30px;border-radius:8px;border:none;background:var(--dlight);color:var(--danger);cursor:pointer;font-size:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.tx-edit{width:26px;height:26px;border-radius:7px;border:none;background:var(--plight);color:var(--primary);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-height:85vh;overflow-y:auto;padding:20px 20px 40px;animation:slideUp .25s ease;}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+.modal-title{font-size:17px;font-weight:800;margin-bottom:16px;color:var(--text);}
 .profile-card{background:linear-gradient(135deg,#15803D,#22C55E);border-radius:var(--r);padding:20px;margin-bottom:12px;color:#fff;display:flex;align-items:center;gap:14px;}
 .profile-avatar{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .profile-name{font-size:16px;font-weight:800;}.profile-email{font-size:12px;opacity:.82;margin-top:2px;}
@@ -251,6 +261,35 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </button>
   </div>
 </div>
+<!-- MODAL EDIT KATEGORI -->
+<div class="modal-overlay" id="modalCat">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✏️ Edit Kategori</div>
+    <input type="hidden" id="editCatId">
+    <div class="fg"><label class="fl">Ikon Emoji</label><input type="text" class="fi" id="editCatEmoji" maxlength="2"></div>
+    <div class="fg"><label class="fl">Nama Kategori</label><input type="text" class="fi" id="editCatName"></div>
+    <div class="fg"><label class="fl">Budget Bulanan (Rp)</label><input type="number" class="fi" id="editCatBudget" inputmode="numeric"></div>
+    <button class="btn btn-p" onclick="saveEditCat()" style="margin-bottom:10px">💾 Simpan</button>
+    <button class="btn btn-ghost" onclick="closeModal('modalCat')">Batal</button>
+  </div>
+</div>
+
+<!-- MODAL EDIT TRANSAKSI -->
+<div class="modal-overlay" id="modalTx">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✏️ Edit Transaksi</div>
+    <input type="hidden" id="editTxId">
+    <div class="fg"><label class="fl">Tanggal</label><input type="date" class="fi" id="editTxDate"></div>
+    <div class="fg"><label class="fl">Kategori</label><select class="fs" id="editTxCat"></select></div>
+    <div class="fg"><label class="fl">Jumlah (Rp)</label><input type="number" class="fi" id="editTxAmt" inputmode="numeric"></div>
+    <div class="fg"><label class="fl">Keterangan</label><input type="text" class="fi" id="editTxNote"></div>
+    <button class="btn btn-p" onclick="saveEditTx()" style="margin-bottom:10px">💾 Simpan</button>
+    <button class="btn btn-ghost" onclick="closeModal('modalTx')">Batal</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -389,7 +428,10 @@ function txHtml(tx,hideDate=false){
     </div>
     <div class="tx-r">
       <div class="tx-amt">-${rp(tx.amount)}</div>
-      <button class="tx-del" onclick="delTx('${tx.id}')">🗑</button>
+      <div style="display:flex;gap:4px">
+        <button class="tx-edit" onclick="openEditTx('${tx.id}')">✏️</button>
+        <button class="tx-del" onclick="delTx('${tx.id}')">🗑</button>
+      </div>
     </div>
   </div>`;
 }
@@ -518,9 +560,71 @@ function renderCatList(){
   el.innerHTML=cats.length?cats.map(c=>`<div class="cmi">
     <div class="cmi-emoji">${c.emoji||'📁'}</div>
     <div class="cmi-info"><div class="cmi-name">${c.name}</div><div class="cmi-bud">${c.budget?'Budget: '+rp(c.budget)+'/bln':'Tanpa batas budget'}</div></div>
-    <button class="cmi-del" onclick="delCat('${c.id}')">✕</button>
+    <div class="cmi-actions">
+      <button class="cmi-edit" onclick="openEditCat('${c.id}')">✏️</button>
+      <button class="cmi-del" onclick="delCat('${c.id}')">✕</button>
+    </div>
   </div>`).join(''):`<div class="empty"><div class="empty-icon">📂</div><div class="empty-text">Belum ada kategori.</div></div>`;
 }
+
+function openEditCat(id){
+  const c=cats.find(c=>c.id===id);if(!c)return;
+  document.getElementById('editCatId').value=c.id;
+  document.getElementById('editCatEmoji').value=c.emoji||'📁';
+  document.getElementById('editCatName').value=c.name;
+  document.getElementById('editCatBudget').value=c.budget||'';
+  document.getElementById('modalCat').classList.add('open');
+}
+async function saveEditCat(){
+  const id=document.getElementById('editCatId').value;
+  const emoji=document.getElementById('editCatEmoji').value.trim()||'📁';
+  const name=document.getElementById('editCatName').value.trim();
+  const budget=parseFloat(document.getElementById('editCatBudget').value)||0;
+  if(!name){toast('⚠️ Isi nama kategori!');return;}
+  sync('syncing');
+  const{error}=await sb.from('categories').update({emoji,name,budget}).eq('id',id);
+  if(error){sync('error');toast('❌ Gagal: '+error.message);return;}
+  const idx=cats.findIndex(c=>c.id===id);
+  if(idx>-1)cats[idx]={...cats[idx],emoji,name,budget};
+  closeModal('modalCat');
+  toast('✅ Kategori diperbarui!');sync('ok');ra();
+}
+
+function openEditTx(id){
+  const tx=txs.find(t=>t.id===id);if(!tx)return;
+  document.getElementById('editTxId').value=tx.id;
+  document.getElementById('editTxDate').value=tx.date;
+  document.getElementById('editTxAmt').value=tx.amount;
+  document.getElementById('editTxNote').value=tx.note||'';
+  const sel=document.getElementById('editTxCat');
+  sel.innerHTML=cats.map(c=>`<option value="${c.id}">${c.emoji||'📁'} ${c.name}</option>`).join('');
+  sel.value=tx.category_id;
+  document.getElementById('modalTx').classList.add('open');
+}
+async function saveEditTx(){
+  const id=document.getElementById('editTxId').value;
+  const date=document.getElementById('editTxDate').value;
+  const category_id=document.getElementById('editTxCat').value;
+  const amount=parseFloat(document.getElementById('editTxAmt').value);
+  const note=document.getElementById('editTxNote').value.trim();
+  if(!date||!category_id||!amount||amount<=0){toast('⚠️ Isi semua field!');return;}
+  sync('syncing');
+  const{error}=await sb.from('transactions').update({date,category_id,amount,note}).eq('id',id);
+  if(error){sync('error');toast('❌ Gagal: '+error.message);return;}
+  const idx=txs.findIndex(t=>t.id===id);
+  if(idx>-1)txs[idx]={...txs[idx],date,category_id,amount,note};
+  closeModal('modalTx');
+  toast('✅ Transaksi diperbarui!');sync('ok');ra();
+}
+
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+// Tutup modal kalau tap di luar
+document.addEventListener('click',e=>{
+  ['modalCat','modalTx'].forEach(id=>{
+    const overlay=document.getElementById(id);
+    if(overlay&&e.target===overlay)overlay.classList.remove('open');
+  });
+});
 async function addCat(){
   const emoji=document.getElementById('cEmoji').value.trim()||'📁';
   const name=document.getElementById('cName').value.trim();

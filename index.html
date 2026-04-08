@@ -145,12 +145,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 </style>
 </head>
 <body>
-
+ 
 <div class="loading-screen" id="loadingScreen">
   <img class="loading-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="logo">
   <div class="loading-text">Memuat...</div>
 </div>
-
+ 
 <div class="auth-screen" id="authScreen" style="display:none">
   <img class="auth-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="logo">
   <div class="auth-title">Satrio's Family Finance</div>
@@ -167,7 +167,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <button class="btn btn-p" id="authBtn" onclick="doAuth()">Masuk</button>
   </div>
 </div>
-
+ 
 <div id="mainApp" style="display:none">
   <div class="header">
     <img class="header-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="SFF Logo">
@@ -252,17 +252,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
+ 
 <script>
-const _url='https://vlhwuqtpdorxprzloqf.supabase.co';
-const _key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsaHV3dXF0cGRvcnhwcnpsb3FmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1ODc0MDcsImV4cCI6MjA5MTE2MzQwN30._KsW15wyhESfoWFVuq5LHur4eJiVoGkr52OVLx3brzQ';
+const _url='https://wxwkguqihpphgswbsfme.supabase.co';
+const _key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4d2tndXFpaHBwaGdzd2JzZm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MTkxMzgsImV4cCI6MjA5MTE5NTEzOH0.dCoCNaMEZJHVf_Fve-vDumWHpJZBFlJL_UhnbXVBzHQ';
 const sb=supabase.createClient(_url,_key);
-
+ 
 let cats=[],txs=[];
 let hP={type:'monthly',mo:0,cs:'',ce:''};
 let tP={type:'monthly',mo:0,cs:'',ce:''};
 let tFilter='all',tView='list',expandedDays={};
-
+ 
 const rp=n=>'Rp '+Number(n).toLocaleString('id-ID');
 const fd=s=>new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
 const fdS=s=>new Date(s+'T00:00:00').toLocaleDateString('id-ID',{weekday:'short',day:'numeric',month:'short'});
@@ -270,7 +270,7 @@ const td=()=>new Date().toISOString().slice(0,10);
 const addD=(s,n)=>{const d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 function sync(s){const d=document.getElementById('syncDot');if(d)d.className='sync-dot'+(s==='syncing'?' syncing':s==='error'?' error':'');}
-
+ 
 let authMode='login';
 function switchTab(m){
   authMode=m;
@@ -281,7 +281,7 @@ function switchTab(m){
   document.getElementById('authMsg').className='auth-msg';
 }
 function showMsg(msg,type='error'){const el=document.getElementById('authMsg');el.textContent=msg;el.className='auth-msg '+type;}
-
+ 
 async function doAuth(){
   const email=document.getElementById('authEmail').value.trim();
   const pass=document.getElementById('authPass').value;
@@ -304,13 +304,13 @@ async function doAuth(){
   }catch(e){showMsg(e.message==='Invalid login credentials'?'Email atau password salah!':e.message);}
   btn.textContent=authMode==='login'?'Masuk':'Daftar Akun';btn.disabled=false;
 }
-
+ 
 async function doLogout(){
   await sb.auth.signOut();cats=[];txs=[];
   document.getElementById('mainApp').style.display='none';
   document.getElementById('authScreen').style.display='flex';
 }
-
+ 
 async function loadData(){
   sync('syncing');
   try{
@@ -319,7 +319,7 @@ async function loadData(){
     cats=c||[];txs=t||[];sync('ok');
   }catch(e){sync('error');toast('⚠️ Gagal memuat: '+e.message);}
 }
-
+ 
 async function startApp(){
   const{data:{user}}=await sb.auth.getUser();
   await loadData();
@@ -329,7 +329,7 @@ async function startApp(){
   document.getElementById('mainApp').style.display='block';
   ra();
 }
-
+ 
 function pRange(p){
   const now=new Date();
   if(p.type==='monthly'){const s=new Date(now.getFullYear(),now.getMonth()+p.mo,1),e=new Date(now.getFullYear(),now.getMonth()+p.mo+1,0);return{start:s.toISOString().slice(0,10),end:e.toISOString().slice(0,10)};}
@@ -341,7 +341,7 @@ function pLabel(p){
   const r=pRange(p);return fd(r.start)+' – '+fd(r.end);
 }
 const inP=(tx,p)=>{const r=pRange(p);return tx.date>=r.start&&tx.date<=r.end;};
-
+ 
 function renderPP(id,p,ns){
   const el=document.getElementById(id);if(!el)return;
   const t=td(),w7=addD(t,-6);
@@ -362,7 +362,7 @@ function hT(v){hP.type=v;ra();}function hM(d){if(hP.mo+d<=0){hP.mo+=d;ra();}}
 function hA(){const s=document.getElementById('homePP_s')?.value,e=document.getElementById('homePP_e')?.value;if(!s||!e){toast('⚠️ Pilih tanggal dulu');return;}if(s>e){toast('⚠️ Tanggal awal harus lebih awal');return;}hP.cs=s;hP.ce=e;ra();}
 function tT(v){tP.type=v;ra();}function tM(d){if(tP.mo+d<=0){tP.mo+=d;ra();}}
 function tA(){const s=document.getElementById('tablePP_s')?.value,e=document.getElementById('tablePP_e')?.value;if(!s||!e){toast('⚠️ Pilih tanggal dulu');return;}if(s>e){toast('⚠️ Tanggal awal harus lebih awal');return;}tP.cs=s;tP.ce=e;ra();}
-
+ 
 function goTo(pg){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -377,7 +377,7 @@ function setView(v){
   document.getElementById('sortRowEl').style.display=v==='daily'?'none':'flex';
   renderTableContent();
 }
-
+ 
 function txHtml(tx,hideDate=false){
   const c=cats.find(c=>c.id===tx.category_id);
   return `<div class="tx-item">
@@ -393,7 +393,7 @@ function txHtml(tx,hideDate=false){
     </div>
   </div>`;
 }
-
+ 
 async function addTx(){
   const date=document.getElementById('txDate').value;
   const catId=document.getElementById('txCat').value;
@@ -408,7 +408,7 @@ async function addTx(){
   document.getElementById('txAmt').value='';document.getElementById('txNote').value='';
   toast('✅ Berhasil dicatat!');sync('ok');ra();
 }
-
+ 
 async function delTx(id){
   if(!confirm('Hapus transaksi ini?'))return;
   sync('syncing');
@@ -416,7 +416,7 @@ async function delTx(id){
   if(error){sync('error');toast('❌ Gagal');return;}
   txs=txs.filter(t=>t.id!==id);sync('ok');ra();toast('🗑 Dihapus');
 }
-
+ 
 function renderSummary(list){
   const el=document.getElementById('txSummary');if(!el)return;
   const total=list.reduce((s,t)=>s+t.amount,0);
@@ -471,7 +471,7 @@ function toggleDay(date){
   el.classList.toggle('collapsed',!expandedDays[date]);
   hdr.querySelector('.day-chevron').textContent=expandedDays[date]?'▲':'▼';
 }
-
+ 
 function renderHome(){
   const el=document.getElementById('catProg');if(!el)return;
   const spend={};txs.filter(tx=>inP(tx,hP)).forEach(tx=>{spend[tx.category_id]=(spend[tx.category_id]||0)+tx.amount;});
@@ -503,7 +503,7 @@ function renderHome(){
   const recent=txs.filter(tx=>inP(tx,hP)).slice(0,5);
   rTx.innerHTML=recent.length?recent.map(tx=>txHtml(tx)).join(''):`<div class="empty"><div class="empty-icon">💸</div><div class="empty-text">Belum ada transaksi di periode ini.</div></div>`;
 }
-
+ 
 function renderCatOpts(){
   const s=document.getElementById('txCat');if(!s)return;const v=s.value;
   s.innerHTML='<option value="">-- Pilih Kategori --</option>'+cats.map(c=>`<option value="${c.id}">${c.emoji||'📁'} ${c.name}</option>`).join('');
@@ -539,13 +539,13 @@ async function delCat(id){
   if(error){sync('error');toast('❌ Gagal');return;}
   cats=cats.filter(c=>c.id!==id);sync('ok');ra();toast('🗑 Kategori dihapus');
 }
-
+ 
 function ra(){
   renderPP('homePP',hP,'h');renderPP('tablePP',tP,'t');
   renderHome();renderCatOpts();renderCatList();renderFilters();renderTableContent();
   document.getElementById('sortRowEl').style.display=tView==='daily'?'none':'flex';
 }
-
+ 
 window.onload=async()=>{
   const now=new Date();
   const dEl=document.getElementById('headerDate');

@@ -659,10 +659,14 @@ window.onload=async()=>{
   const dEl=document.getElementById('headerDate');
   if(dEl)dEl.textContent=now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const txDEl=document.getElementById('txDate');if(txDEl)txDEl.value=now.toISOString().slice(0,10);
-  const{data:{session}}=await sb.auth.getSession();
-  document.getElementById('loadingScreen').style.display='none';
-  if(session){await startApp();}
-  else{document.getElementById('authScreen').style.display='flex';}
+  function showLogin(){document.getElementById('loadingScreen').style.display='none';document.getElementById('authScreen').style.display='flex';}
+  const timeout=setTimeout(showLogin,5000);
+  try{
+    const{data:{session}}=await sb.auth.getSession();
+    clearTimeout(timeout);
+    document.getElementById('loadingScreen').style.display='none';
+    if(session){await startApp();}else{showLogin();}
+  }catch(e){clearTimeout(timeout);showLogin();}
 };
 </script>
 </body>

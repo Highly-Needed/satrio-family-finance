@@ -244,6 +244,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <div class="profile-avatar">👤</div>
       <div><div class="profile-name" id="profileName">—</div><div class="profile-email" id="profileEmail">—</div></div>
     </div>
+    <div class="card">
+      <div class="card-title">💾 Backup Data</div>
+      <p style="font-size:13px;color:var(--textl);margin-bottom:12px;line-height:1.6">Export semua data transaksi dan kategori ke file. Simpan file ini baik-baik untuk diimport nanti.</p>
+      <button class="btn btn-p" onclick="exportData()" style="margin-bottom:8px">📤 Export Semua Data</button>
+    </div>
     <div class="card"><div class="card-title">⚙️ Akun</div><button class="btn btn-ghost" onclick="doLogout()">🚪 Keluar dari Akun</button></div>
   </div>
   <div class="bottom-nav">
@@ -646,6 +651,23 @@ async function delCat(id){
   const{error}=await sb.from('categories').delete().eq('id',id);
   if(error){sync('error');toast('❌ Gagal');return;}
   cats=cats.filter(c=>c.id!==id);sync('ok');ra();toast('🗑 Kategori dihapus');
+}
+
+function exportData(){
+  if(!cats.length && !txs.length){toast('⚠️ Tidak ada data untuk diexport!');return;}
+  const payload = {
+    exported_at: new Date().toISOString(),
+    categories: cats.map(c=>({id:c.id,name:c.name,emoji:c.emoji,budget:c.budget})),
+    transactions: txs.map(t=>({id:t.id,date:t.date,amount:t.amount,note:t.note,category_id:t.category_id}))
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'satrio-finance-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✅ Data berhasil diexport!');
 }
 
 function ra(){

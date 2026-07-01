@@ -310,8 +310,9 @@ let tFilter='all',tView='list',expandedDays={};
 const rp=n=>'Rp '+Number(n).toLocaleString('id-ID');
 const fd=s=>new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
 const fdS=s=>new Date(s+'T00:00:00').toLocaleDateString('id-ID',{weekday:'short',day:'numeric',month:'short'});
-const td=()=>new Date().toISOString().slice(0,10);
-const addD=(s,n)=>{const d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
+const fmtD=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const td=()=>fmtD(new Date());
+const addD=(s,n)=>{const d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return fmtD(d);};
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 function sync(s){const d=document.getElementById('syncDot');if(d)d.className='sync-dot'+(s==='syncing'?' syncing':s==='error'?' error':'');}
 
@@ -376,7 +377,7 @@ async function startApp(){
 
 function pRange(p){
   const now=new Date();
-  if(p.type==='monthly'){const s=new Date(now.getFullYear(),now.getMonth()+p.mo,1),e=new Date(now.getFullYear(),now.getMonth()+p.mo+1,0);return{start:s.toISOString().slice(0,10),end:e.toISOString().slice(0,10)};}
+  if(p.type==='monthly'){const s=new Date(now.getFullYear(),now.getMonth()+p.mo,1),e=new Date(now.getFullYear(),now.getMonth()+p.mo+1,0);return{start:fmtD(s),end:fmtD(e)};}
   if(p.type==='week7'){const t=td();return{start:addD(t,-6),end:t};}
   return{start:p.cs||td(),end:p.ce||td()};
 }

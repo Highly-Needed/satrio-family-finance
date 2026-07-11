@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Finance — App Store Screenshots</title>
+<style>
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/courier-prime-700.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('fonts/jakarta-sans-var.woff2') format('woff2');}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0F150D;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:40px;}
+.hint{color:#9FB09A;font-size:13px;margin-bottom:24px;max-width:640px;}
+.hint b{color:#EAF3E6;}
+.rail{display:flex;gap:28px;overflow-x:auto;padding-bottom:20px;}
+
+.slide{
+  flex-shrink:0;width:375px;height:812px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;
+}
+.slide .headline{
+  font-family:'Courier Prime',monospace;font-weight:700;color:#fff;text-align:center;
+  font-size:23px;line-height:1.2;padding:34px 26px 0;text-wrap:balance;
+}
+.slide .sub{color:rgba(255,255,255,.82);font-size:12.5px;text-align:center;padding:8px 32px 0;line-height:1.45;}
+
+.s1{background:linear-gradient(160deg,#15803D,#0B4B23);}
+.s2{background:linear-gradient(160deg,#166534,#052E14);}
+.s3{background:linear-gradient(160deg,#1E7A45,#0A3A20);}
+.s4{background:linear-gradient(160deg,#0F6B32,#062616);}
+.s5{background:linear-gradient(160deg,#22C55E,#0F5A2C);}
+
+/* phone frame — dimensions/paddings copied from shared/app.css so the mock
+   is structurally identical to the real app, just scaled down ~78% */
+.phone{
+  margin-top:16px;width:300px;background:#fff;border-radius:36px;padding:10px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
+}
+.screen{background:#F0FDF4;border-radius:26px;overflow:hidden;font-family:'Segoe UI',system-ui,sans-serif;height:660px;display:flex;flex-direction:column;}
+.hdr{background:linear-gradient(135deg,#15803D,#22C55E);color:#fff;padding:13px 14px;display:flex;align-items:center;gap:9px;flex-shrink:0;}
+.hdr img{width:24px;height:24px;border-radius:6px;}
+.hdr .t1{font-size:11px;font-weight:800;}
+.hdr .t2{font-size:8.5px;opacity:.8;}
+.body{padding:10px;flex:1;overflow:hidden;}
+
+.pill-row{display:flex;gap:5px;margin-bottom:9px;}
+.pill{flex:1;text-align:center;font-size:8.5px;font-weight:700;padding:6px 0;border-radius:8px;border:1px solid #D1FAE5;background:#fff;color:#6B7280;}
+.pill.on{background:#16A34A;border-color:#16A34A;color:#fff;}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px;}
+.stat{background:#fff;border:1px solid #D1FAE5;border-radius:11px;padding:8px 9px;}
+.stat .l{font-size:7px;font-weight:700;color:#6B7280;text-transform:uppercase;}
+.stat .v{font-size:12px;font-weight:800;color:#14532D;margin-top:3px;}
+.stat .s{font-size:7.5px;color:#16A34A;font-weight:700;margin-top:2px;}
+
+.card{background:#fff;border:1px solid #D1FAE5;border-radius:13px;padding:10px;margin-bottom:8px;}
+.card-title{font-size:7.5px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+.sec-title{font-size:12px;font-weight:800;color:#14532D;margin-bottom:9px;}
+
+/* exact structure from renderHome(): cat-hdr row, budget line, bar, sisa line */
+.cat-item{margin-bottom:9px;}
+.cat-item:last-child{margin-bottom:0;}
+.cat-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;gap:5px;}
+.cat-name{font-size:9.5px;font-weight:700;color:#14532D;display:flex;align-items:center;gap:4px;}
+.cat-right{text-align:right;flex-shrink:0;}
+.cat-spent{font-size:9.5px;font-weight:700;color:#14532D;}
+.cat-budg{font-size:7.5px;color:#6B7280;}
+.cat-sisa{font-size:7.5px;font-weight:700;color:#16A34A;margin-top:3px;}
+.cat-sisa.warn{color:#F59E0B;}
+.bar{height:5px;border-radius:3px;background:#F0FDF4;border:1px solid #D1FAE5;overflow:hidden;}
+.bar i{display:block;height:100%;background:#22C55E;border-radius:3px;}
+.bar i.warn{background:#F59E0B;}
+
+.tx-item{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid #D1FAE5;}
+.tx-item:last-child{border-bottom:none;}
+.tx-icon{width:26px;height:26px;border-radius:8px;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.tx-info{flex:1;min-width:0;}
+.tx-cat{font-size:9px;font-weight:700;color:#14532D;}
+.tx-note{font-size:7.5px;color:#6B7280;}
+.tx-date{font-size:7px;color:#6B7280;margin-top:1px;}
+.tx-amt{font-size:9px;font-weight:800;color:#EF4444;flex-shrink:0;}
+
+.fg{margin-bottom:9px;}
+.fl{display:block;font-size:8px;font-weight:700;color:#6B7280;margin-bottom:4px;}
+.fi{width:100%;padding:8px 9px;border:1.5px solid #D1FAE5;border-radius:9px;font-size:10px;color:#14532D;background:#fff;}
+.fi.ph{color:#9CA3AF;}
+.btn-save{width:100%;padding:10px;border-radius:10px;background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff;font-size:10px;font-weight:800;text-align:center;margin-top:2px;}
+
+/* Kategori page: list rows (cmi), NOT progress bars — matches renderCatList() exactly */
+.cmi{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #D1FAE5;}
+.cmi:last-child{border-bottom:none;}
+.cmi-emoji{font-size:15px;width:22px;text-align:center;flex-shrink:0;}
+.cmi-info{flex:1;min-width:0;}
+.cmi-name{font-size:9.5px;font-weight:700;color:#14532D;}
+.cmi-bud{font-size:8px;color:#6B7280;}
+.cmi-actions{display:flex;gap:4px;flex-shrink:0;}
+.cmi-edit,.cmi-del{width:20px;height:20px;border-radius:6px;border:none;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.cmi-edit{background:#DCFCE7;color:#16A34A;}
+.cmi-del{background:#FEF2F2;color:#EF4444;}
+
+.view-toggle{display:flex;gap:5px;margin-bottom:9px;}
+.view-btn{flex:1;padding:7px;border-radius:8px;border:1.5px solid #D1FAE5;background:#fff;font-size:9px;font-weight:600;color:#6B7280;text-align:center;}
+.view-btn.active{background:#16A34A;border-color:#16A34A;color:#fff;}
+.summary-row{display:flex;gap:6px;margin-bottom:9px;overflow:hidden;}
+.sum-chip{flex:1;background:#fff;border:1px solid #D1FAE5;border-radius:10px;padding:7px 6px;text-align:center;}
+.sum-chip-label{font-size:6.5px;color:#6B7280;font-weight:700;text-transform:uppercase;}
+.sum-chip-val{font-size:9px;font-weight:800;color:#14532D;margin-top:2px;}
+.sum-chip-val.red{color:#EF4444;}
+.day-hdr{display:flex;justify-content:space-between;padding:7px 9px;background:#F0FDF4;border-radius:9px;border:1px solid #D1FAE5;margin-bottom:5px;font-size:9px;font-weight:700;color:#14532D;}
+.day-hdr .tot{color:#EF4444;}
+
+.profile-card{background:linear-gradient(135deg,#15803D,#22C55E);border-radius:13px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:9px;}
+.profile-avatar{width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.profile-name{font-size:10.5px;font-weight:800;color:#fff;}
+.profile-email{font-size:8px;color:rgba(255,255,255,.82);margin-top:1px;}
+.card-p{font-size:8.5px;color:#6B7280;margin-bottom:8px;line-height:1.5;}
+.export-btn{width:100%;padding:9px;border-radius:9px;background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff;font-size:9.5px;font-weight:800;text-align:center;}
+.logout-btn{width:100%;padding:9px;border-radius:9px;background:#F0FDF4;border:1.5px solid #D1FAE5;color:#6B7280;font-size:9.5px;font-weight:700;text-align:center;}
+
+.mnav{display:flex;border-top:1.5px solid #D1FAE5;background:#fff;flex-shrink:0;}
+.mnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px 9px;color:#6B7280;font-size:7.5px;font-weight:600;}
+.mnav a.on{color:#16A34A;}
+.mnav svg{width:16px;height:16px;}
+</style>
+</head>
+<body>
+
+<div class="hint">5 slide gaya App Store/Play Store, tiap slide highlight 1 fitur — dibangun ulang persis dari struktur HTML app aslinya (bukan disederhanain), termasuk detail budget/sisa per kategori, transaksi terbaru, dan card akun. Buka file ini di browser, resize window selebar konten, screenshot tiap slide satu-satu. <b>Ukuran tiap slide: 375×812px.</b></div>
+
+<div class="rail">
+
+  <!-- SLIDE 1: Dashboard (page-home, persis dari renderHome()) -->
+  <div class="slide s1">
+    <div class="headline">Tau Persis Uang Bulan Ini Abis Kemana</div>
+    <div class="sub">Semua pengeluaran keluarga, rapi dalam satu dashboard</div>
+    <div class="phone"><div class="screen">
+      <div class="hdr">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="">
+        <div><div class="t1">Family Finance</div><div class="t2">Jumat, 10 Juli 2026</div></div>
+      </div>
+      <div class="body">
+        <div class="pill-row"><div class="pill on">Bulanan</div><div class="pill">7 Hari</div><div class="pill">Tanggal</div></div>
+        <div class="stats">
+          <div class="stat"><div class="l">💸 Total Keluar</div><div class="v">Rp 2.930rb</div><div class="s">Sisa Rp 3.270rb</div></div>
+          <div class="stat"><div class="l">📦 Total Budget</div><div class="v">Rp 6.200rb</div><div class="s" style="color:#6B7280">9 transaksi</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 Per Kategori</div>
+          <div class="cat-item">
+            <div class="cat-hdr"><div class="cat-name">🛒 Makanan &amp; Dapur</div><div class="cat-right"><div class="cat-spent">Rp 470.000</div><div class="cat-budg">dari Rp 2.000.000</div></div></div>
+            <div class="bar"><i style="width:24%"></i></div>
+            <div class="cat-sisa">Sisa Rp 1.530.000</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-hdr"><div class="cat-name">🏠 Tagihan Rumah</div><div class="cat-right"><div class="cat-spent">Rp 1.200.000</div><div class="cat-budg">dari Rp 1.500.000</div></div></div>
+            <div class="bar"><i class="warn" style="width:80%"></i></div>
+            <div class="cat-sisa warn">Sisa Rp 300.000</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🕐 Transaksi Terbaru</div>
+          <div class="tx-item"><div class="tx-icon">🛒</div><div class="tx-info"><div class="tx-cat">Makanan &amp; Dapur</div><div class="tx-note">Sayur &amp; buah pasar</div><div class="tx-date">9 Jul 2026</div></div><div class="tx-amt">-Rp 120.000</div></div>
+          <div class="tx-item"><div class="tx-icon">🚗</div><div class="tx-info"><div class="tx-cat">Transportasi</div><div class="tx-note">Parkir &amp; tol</div><div class="tx-date">9 Jul 2026</div></div><div class="tx-amt">-Rp 80.000</div></div>
+        </div>
+      </div>
+      <div class="mnav">
+        <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori</a>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- SLIDE 2: Input (page-input, persis) -->
+  <div class="slide s2">
+    <div class="headline">Catat Pengeluaran Cuma 3 Detik</div>
+    <div class="sub">Pilih kategori, isi jumlah, selesai — gak ada form ribet</div>
+    <div class="phone"><div class="screen">
+      <div class="hdr">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="">
+        <div><div class="t1">Family Finance</div><div class="t2">Catat Pengeluaran</div></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="sec-title">➕ Catat Pengeluaran</div>
+          <div class="fg"><span class="fl">TANGGAL</span><div class="fi">10/07/2026</div></div>
+          <div class="fg"><span class="fl">KATEGORI</span><div class="fi">🛒 Makanan &amp; Dapur</div></div>
+          <div class="fg"><span class="fl">JUMLAH (RP)</span><div class="fi">75.000</div></div>
+          <div class="fg"><span class="fl">KETERANGAN (OPSIONAL)</span><div class="fi ph">Belanja sayur di pasar</div></div>
+          <div class="btn-save">💾 Simpan Pengeluaran</div>
+        </div>
+      </div>
+      <div class="mnav">
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a>
+        <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori</a>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- SLIDE 3: Kategori (page-cat, persis — form tambah + list, TANPA progress bar) -->
+  <div class="slide s3">
+    <div class="headline">Kasih Batas, Auto Diingetin Kalau Mepet</div>
+    <div class="sub">Bikin kategori sendiri, pasang budget bulanan</div>
+    <div class="phone"><div class="screen">
+      <div class="hdr">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="">
+        <div><div class="t1">Family Finance</div><div class="t2">Kategori</div></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="sec-title">➕ Tambah Kategori Baru</div>
+          <div class="fg"><span class="fl">IKON EMOJI</span><div class="fi ph">🛒 🍚 💊 🏠</div></div>
+          <div class="fg"><span class="fl">NAMA KATEGORI</span><div class="fi ph">Contoh: Belanja Dapur</div></div>
+          <div class="fg"><span class="fl">BATAS BUDGET BULANAN (RP)</span><div class="fi ph">Biarkan kosong jika tidak ada batas</div></div>
+          <div class="btn-save">✅ Tambah Kategori</div>
+        </div>
+        <div class="card">
+          <div class="card-title">📂 Kategori Saya</div>
+          <div class="cmi"><div class="cmi-emoji">🏠</div><div class="cmi-info"><div class="cmi-name">Tagihan Rumah</div><div class="cmi-bud">Budget: Rp 1.500.000/bln</div></div><div class="cmi-actions"><div class="cmi-edit">✏️</div><div class="cmi-del">✕</div></div></div>
+          <div class="cmi"><div class="cmi-emoji">🎓</div><div class="cmi-info"><div class="cmi-name">Pendidikan Anak</div><div class="cmi-bud">Budget: Rp 1.000.000/bln</div></div><div class="cmi-actions"><div class="cmi-edit">✏️</div><div class="cmi-del">✕</div></div></div>
+          <div class="cmi"><div class="cmi-emoji">💊</div><div class="cmi-info"><div class="cmi-name">Kesehatan</div><div class="cmi-bud">Budget: Rp 500.000/bln</div></div><div class="cmi-actions"><div class="cmi-edit">✏️</div><div class="cmi-del">✕</div></div></div>
+        </div>
+      </div>
+      <div class="mnav">
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi</a>
+        <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori</a>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- SLIDE 4: Transaksi (page-table, persis — view toggle + summary chips + daily list) -->
+  <div class="slide s4">
+    <div class="headline">Riwayat Rapi, Gampang Dicari</div>
+    <div class="sub">Lihat per hari atau daftar, filter kategori, urutin sesuka hati</div>
+    <div class="phone"><div class="screen">
+      <div class="hdr">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="">
+        <div><div class="t1">Family Finance</div><div class="t2">Transaksi</div></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="sec-title">📋 Transaksi</div>
+          <div class="view-toggle"><div class="view-btn">📋 Daftar</div><div class="view-btn active">📅 Harian</div></div>
+          <div class="summary-row">
+            <div class="sum-chip"><div class="sum-chip-label">Total</div><div class="sum-chip-val red">Rp 2.930rb</div></div>
+            <div class="sum-chip"><div class="sum-chip-label">Transaksi</div><div class="sum-chip-val">9x</div></div>
+            <div class="sum-chip"><div class="sum-chip-label">Terbesar</div><div class="sum-chip-val red">Rp 850rb</div></div>
+          </div>
+          <div class="day-hdr"><span>📍 Hari ini</span><span class="tot">-Rp 195.000</span></div>
+          <div class="tx-item"><div class="tx-icon">🛒</div><div class="tx-info"><div class="tx-cat">Makanan &amp; Dapur</div><div class="tx-note">Sayur &amp; buah pasar</div></div><div class="tx-amt">-Rp 120.000</div></div>
+          <div class="tx-item"><div class="tx-icon">🚗</div><div class="tx-info"><div class="tx-cat">Transportasi</div><div class="tx-note">Parkir &amp; tol</div></div><div class="tx-amt">-Rp 80.000</div></div>
+          <div class="day-hdr" style="margin-top:8px"><span>🕐 Kemarin</span><span class="tot">-Rp 350.000</span></div>
+          <div class="tx-item"><div class="tx-icon">🛒</div><div class="tx-info"><div class="tx-cat">Makanan &amp; Dapur</div><div class="tx-note">Belanja bulanan</div></div><div class="tx-amt">-Rp 350.000</div></div>
+        </div>
+      </div>
+      <div class="mnav">
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat</a>
+        <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori</a>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- SLIDE 5: Profil (page-profile, persis — profile-card, backup, akun/logout) -->
+  <div class="slide s5">
+    <div class="headline">Data Kamu, Kendali Kamu</div>
+    <div class="sub">Export backup kapan aja — ganti HP atau audit sendiri, tinggal buka file-nya</div>
+    <div class="phone"><div class="screen">
+      <div class="hdr">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="">
+        <div><div class="t1">Family Finance</div><div class="t2">Profil</div></div>
+      </div>
+      <div class="body">
+        <div class="profile-card">
+          <div class="profile-avatar">👤</div>
+          <div><div class="profile-name">Nama Kamu</div><div class="profile-email">kamu@email.com</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">💾 Backup Data</div>
+          <div class="card-p">Export semua data transaksi dan kategori ke file. Simpan file ini baik-baik untuk diimport nanti.</div>
+          <div class="export-btn">📤 Export Semua Data</div>
+        </div>
+        <div class="card">
+          <div class="card-title">⚙️ Akun</div>
+          <div class="logout-btn">🚪 Keluar dari Akun</div>
+        </div>
+      </div>
+      <div class="mnav">
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi</a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori</a>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+</body>
+</html>

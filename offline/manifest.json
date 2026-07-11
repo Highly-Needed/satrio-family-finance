@@ -1,7 +1,7 @@
 {
-  "name": "Family Finance",
-  "short_name": "FF",
-  "description": "Aplikasi pencatatan keuangan keluarga",
+  "name": "Family Finance (Offline)",
+  "short_name": "FF Offline",
+  "description": "Aplikasi pencatatan keuangan keluarga — versi offline, data tersimpan di device",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F0FDF4",

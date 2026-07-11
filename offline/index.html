@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FF">
+<meta name="theme-color" content="#16A34A">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Family Finance (Offline)</title>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <img class="loading-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="logo">
+  <div class="loading-text">Memuat...</div>
+</div>
+
+<div class="auth-screen" id="authScreen" style="display:none"></div>
+
+<div class="auth-screen" id="licenseScreen" style="display:none">
+  <img class="auth-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="logo">
+  <div class="auth-title">Family Finance</div>
+  <div class="auth-sub">Masukkan kode lisensi buat aktifkan app di device ini (butuh internet sekali aja)</div>
+  <div class="auth-card">
+    <div class="auth-msg" id="licenseMsg"></div>
+    <div class="fg"><label class="fl">Kode Lisensi</label><input type="text" class="fi" id="licenseKey" placeholder="XXXX-XXXX-XXXX-XXXX"></div>
+    <button class="btn btn-p" id="licenseBtn" onclick="redeemLicense()">🔓 Aktifkan</button>
+    <p style="font-size:12px;color:var(--textl);text-align:center;margin-top:14px">Belum punya lisensi? <a href="#" id="buyLink" target="_blank" style="color:var(--primary);font-weight:700">Beli di sini</a></p>
+  </div>
+</div>
+
+<div id="mainApp" style="display:none">
+  <div class="header">
+    <img class="header-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMTU4MDNEIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMjJDNTVFIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTAiIGZpbGw9InVybCgjYmcpIi8+PHBvbHlnb24gcG9pbnRzPSIyNTYsOTAgNDAwLDIxNSA0MDAsMzk1IDExMiwzOTUgMTEyLDIxNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NyIvPjxwb2x5Z29uIHBvaW50cz0iMjU2LDU4IDQyNSwyMjUgODcsMjI1IiBmaWxsPSIjMTQ1MzJEIi8+PHJlY3QgeD0iMjE1IiB5PSIyNzgiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMTciIHJ4PSI0MSIgZmlsbD0iIzE2QTM0QSIvPjxyZWN0IHg9IjE0MyIgeT0iMjQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iNTYiIHJ4PSIxMCIgZmlsbD0iI0RDRkNFNyIvPjxsaW5lIHgxPSIxNzUiIHkxPSIyNDUiIHgyPSIxNzUiIHkyPSIzMDEiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjE0MyIgeTE9IjI3MyIgeDI9IjIwNyIgeTI9IjI3MyIgc3Ryb2tlPSIjMTZBMzRBIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIzMDUiIHk9IjI0NSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjU2IiByeD0iMTAiIGZpbGw9IiNEQ0ZDRTciLz48bGluZSB4MT0iMzM3IiB5MT0iMjQ1IiB4Mj0iMzM3IiB5Mj0iMzAxIiBzdHJva2U9IiMxNkEzNEEiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIzMDUiIHkxPSIyNzMiIHgyPSIzNjkiIHkyPSIyNzMiIHN0cm9rZT0iIzE2QTM0QSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMzcyIiBjeT0iMTQ4IiByPSI1NSIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjM3MiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzc4MzUwRiI+UnA8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNiIgY3k9IjE1OCIgcng9IjI2IiByeT0iMTMiIGZpbGw9IiM4NkVGQUMiIHRyYW5zZm9ybT0icm90YXRlKC00MCAxMzYgMTU4KSIvPjwvc3ZnPg==" alt="Family Finance Logo">
+    <div style="flex:1">
+      <div class="header-title">Family Finance <span class="sync-dot" id="syncDot"></span></div>
+      <div class="header-sub" id="headerDate"></div>
+    </div>
+    <button onclick="goTo('profile')" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:4px;">👤</button>
+  </div>
+  <div class="page active" id="page-home">
+    <div id="homePP"></div>
+    <div class="stat-grid">
+      <div class="stat-card" id="spendCard"><div class="stat-label">💸 Total Keluar</div><div class="stat-value" id="totalSpend">Rp 0</div><div class="stat-sub" id="statSisa"></div></div>
+      <div class="stat-card"><div class="stat-label">📦 Total Budget</div><div class="stat-value" id="totalBudget">—</div><div class="stat-sub" id="statTx"></div></div>
+    </div>
+    <div class="card"><div class="card-title">📊 Per Kategori</div><div id="catProg"></div></div>
+    <div class="card"><div class="card-title">🕐 Transaksi Terbaru</div><div id="recentTx"></div></div>
+  </div>
+  <div class="page" id="page-input">
+    <div class="card">
+      <div class="sec-title">➕ Catat Pengeluaran</div>
+      <div class="fg"><label class="fl">Tanggal</label><input type="date" class="fi" id="txDate"></div>
+      <div class="fg"><label class="fl">Kategori</label><select class="fs" id="txCat"><option value="">-- Pilih Kategori --</option></select></div>
+      <div class="fg"><label class="fl">Jumlah (Rp)</label><input type="number" class="fi" id="txAmt" placeholder="Contoh: 50000" inputmode="numeric"></div>
+      <div class="fg"><label class="fl">Keterangan (opsional)</label><input type="text" class="fi" id="txNote" placeholder="Contoh: Belanja sayur di pasar"></div>
+      <button class="btn btn-p" onclick="addTx()">💾 Simpan Pengeluaran</button>
+    </div>
+  </div>
+  <div class="page" id="page-table">
+    <div class="card">
+      <div class="sec-title">📋 Transaksi</div>
+      <div id="tablePP"></div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="vbList" onclick="setView('list')">📋 Daftar</button>
+        <button class="view-btn" id="vbDaily" onclick="setView('daily')">📅 Harian</button>
+      </div>
+      <div class="summary-row" id="txSummary"></div>
+      <div class="filter-section-label">Filter Kategori</div>
+      <div class="filter-row" id="filterRow"></div>
+      <div class="sort-row" id="sortRowEl">
+        <span class="sort-lbl">Urutkan:</span>
+        <select class="sort-sel" id="sortSel" onchange="renderTableContent()">
+          <option value="date-desc">Terbaru dulu</option>
+          <option value="date-asc">Terlama dulu</option>
+          <option value="amount-desc">Terbesar dulu</option>
+          <option value="amount-asc">Terkecil dulu</option>
+        </select>
+      </div>
+      <div id="tableContent"></div>
+    </div>
+  </div>
+  <div class="page" id="page-cat">
+    <div class="card">
+      <div class="sec-title">➕ Tambah Kategori Baru</div>
+      <div class="fg"><label class="fl">Ikon Emoji</label><input type="text" class="fi" id="cEmoji" placeholder="🛒  🍚  💊  🏠" maxlength="2"></div>
+      <div class="fg"><label class="fl">Nama Kategori</label><input type="text" class="fi" id="cName" placeholder="Contoh: Belanja Dapur"></div>
+      <div class="fg"><label class="fl">Batas Budget Bulanan (Rp) — opsional</label><input type="number" class="fi" id="cBudget" placeholder="Biarkan kosong jika tidak ada batas" inputmode="numeric"></div>
+      <button class="btn btn-p" onclick="addCat()">✅ Tambah Kategori</button>
+    </div>
+    <div class="card"><div class="card-title">📂 Kategori Saya</div><div id="catList"></div></div>
+  </div>
+  <div class="page" id="page-profile">
+    <div class="profile-card">
+      <div class="profile-avatar">👤</div>
+      <div><div class="profile-name">Versi Offline</div><div class="profile-email">Data tersimpan di device ini</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💾 Backup Data</div>
+      <p style="font-size:13px;color:var(--textl);margin-bottom:12px;line-height:1.6">Export semua data transaksi dan kategori ke file. Karena data cuma tersimpan di device ini, rutin export buat jaga-jaga kalau device hilang/rusak.</p>
+      <button class="btn btn-p" onclick="exportData()" style="margin-bottom:8px">📤 Export Semua Data</button>
+    </div>
+    <div class="card"><div class="card-title">⚙️ Lisensi</div><p style="font-size:12px;color:var(--textl);margin-bottom:10px">App ini aktif di device ini. Reset cuma perlu kalau mau pindah lisensi ke device lain.</p><button class="btn btn-ghost" onclick="resetLicense()">🔁 Reset Lisensi Device Ini</button></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="goTo('home')" id="nav-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda
+    </button>
+    <button class="nav-btn" onclick="goTo('input')" id="nav-input">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Catat
+    </button>
+    <button class="nav-btn" onclick="goTo('table')" id="nav-table">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Transaksi
+    </button>
+    <button class="nav-btn" onclick="goTo('cat')" id="nav-cat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Kategori
+    </button>
+  </div>
+</div>
+<!-- MODAL EDIT KATEGORI -->
+<div class="modal-overlay" id="modalCat">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✏️ Edit Kategori</div>
+    <input type="hidden" id="editCatId">
+    <div class="fg"><label class="fl">Ikon Emoji</label><input type="text" class="fi" id="editCatEmoji" maxlength="2"></div>
+    <div class="fg"><label class="fl">Nama Kategori</label><input type="text" class="fi" id="editCatName"></div>
+    <div class="fg"><label class="fl">Budget Bulanan (Rp)</label><input type="number" class="fi" id="editCatBudget" inputmode="numeric"></div>
+    <button class="btn btn-p" onclick="saveEditCat()" style="margin-bottom:10px">💾 Simpan</button>
+    <button class="btn btn-ghost" onclick="closeModal('modalCat')">Batal</button>
+  </div>
+</div>
+
+<!-- MODAL EDIT TRANSAKSI -->
+<div class="modal-overlay" id="modalTx">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✏️ Edit Transaksi</div>
+    <input type="hidden" id="editTxId">
+    <div class="fg"><label class="fl">Tanggal</label><input type="date" class="fi" id="editTxDate"></div>
+    <div class="fg"><label class="fl">Kategori</label><select class="fs" id="editTxCat"></select></div>
+    <div class="fg"><label class="fl">Jumlah (Rp)</label><input type="number" class="fi" id="editTxAmt" inputmode="numeric"></div>
+    <div class="fg"><label class="fl">Keterangan</label><input type="text" class="fi" id="editTxNote"></div>
+    <button class="btn btn-p" onclick="saveEditTx()" style="margin-bottom:10px">💾 Simpan</button>
+    <button class="btn btn-ghost" onclick="closeModal('modalTx')">Batal</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.getElementById('buyLink').href = 'https://kahayakreativ.myscalev.com/familyfinance';
+
+// Endpoint Edge Function redeem-license di project Supabase yang sama dengan versi online
+const REDEEM_URL = 'https://wxwkguqihpphgswbsfme.supabase.co/functions/v1/redeem-license';
+const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4d2tndXFpaHBwaGdzd2JzZm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MTkxMzgsImV4cCI6MjA5MTE5NTEzOH0.dCoCNaMEZJHVf_Fve-vDumWHpJZBFlJL_UhnbXVBzHQ';
+
+function getDeviceFingerprint(){
+  let fp=localStorage.getItem('sff_offline_device');
+  if(!fp){fp=crypto.randomUUID();localStorage.setItem('sff_offline_device',fp);}
+  return fp;
+}
+</script>
+<script src="../shared/storage-api.js"></script>
+<script src="storage-local.js"></script>
+<script src="../shared/app-core.js"></script>
+<script>
+function showLicenseMsg(msg){const el=document.getElementById('licenseMsg');el.textContent=msg;el.className='auth-msg error';}
+
+async function redeemLicense(){
+  const key=document.getElementById('licenseKey').value.trim();
+  if(!key){showLicenseMsg('Masukkan kode lisensi dulu!');return;}
+  const btn=document.getElementById('licenseBtn');btn.textContent='Memproses...';btn.disabled=true;
+  try{
+    const res=await fetch(REDEEM_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON_KEY,'Authorization':'Bearer '+ANON_KEY},
+      body:JSON.stringify({key,product:'offline',device_fingerprint:getDeviceFingerprint()})
+    });
+    const data=await res.json();
+    if(!res.ok||!data?.ok)throw new Error(data?.message||'Kode lisensi tidak valid');
+    localStorage.setItem('sff_offline_licensed','true');
+    await bootApp();
+  }catch(e){showLicenseMsg(e.message);}
+  btn.textContent='🔓 Aktifkan';btn.disabled=false;
+}
+
+function resetLicense(){
+  if(!confirm('Reset lisensi di device ini? Kamu perlu masukkan kode lisensi lagi buat lanjut pakai app (data yang sudah tersimpan tetap aman).'))return;
+  localStorage.removeItem('sff_offline_licensed');
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('licenseScreen').style.display='flex';
+}
+
+window.onload=()=>{
+  const now=new Date();
+  document.getElementById('loadingScreen').style.display='none';
+  if(localStorage.getItem('sff_offline_licensed')==='true'){
+    bootApp();
+  }else{
+    document.getElementById('licenseScreen').style.display='flex';
+  }
+};
+</script>
+</body>
+</html>

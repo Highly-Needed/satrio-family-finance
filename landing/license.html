@@ -91,12 +91,32 @@ nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,
 .step-body p{color:var(--ink-soft);font-size:.95rem;}
 .step-body code{font-family:'Courier Prime',monospace;background:var(--bg-alt);padding:2px 8px;border-radius:6px;font-size:.88rem;}
 
-.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
 @media(max-width:600px){.feature-grid{grid-template-columns:1fr;}}
-.feature-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;}
-.feature-card .icon{font-size:1.6rem;margin-bottom:8px;}
+.feature-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:0;overflow:hidden;}
 .feature-card h3{font-size:.95rem;margin-bottom:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;}
 .feature-card p{font-size:.85rem;color:var(--ink-soft);}
+.feature-card .fc-text{padding:16px 18px;}
+.feature-card .fc-text .icon{font-size:1.4rem;margin-bottom:6px;}
+
+/* mini phone mockup inside feature cards */
+.mini-phone{background:var(--bg-alt);padding:16px 0 0;display:flex;justify-content:center;overflow:hidden;}
+.mini-phone .mp-frame{width:180px;background:#fff;border-radius:18px 18px 0 0;padding:6px;box-shadow:0 -4px 20px rgba(0,0,0,.1);overflow:hidden;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mini-phone .mp-frame{background:#1a2416;}}
+.mp-screen{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:6px;line-height:1.3;color:#16301F;padding:6px;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mp-screen{color:#EAF3E6;}}
+.mp-screen .mp-hdr{font-weight:800;font-size:7px;margin-bottom:4px;display:flex;align-items:center;gap:3px;}
+.mp-screen .mp-card{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:5px;margin-bottom:4px;}
+.mp-screen .mp-label{font-size:5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;font-weight:700;}
+.mp-screen .mp-val{font-weight:700;font-size:7px;}
+.mp-screen .mp-bar{height:3px;background:var(--line);border-radius:2px;margin-top:2px;}
+.mp-screen .mp-bar i{display:block;height:100%;border-radius:2px;background:#16A34A;}
+.mp-screen .mp-bar i.warn{background:#F59E0B;}
+.mp-screen .mp-bar i.danger{background:#DC2626;}
+.mp-screen .mp-row{display:flex;justify-content:space-between;align-items:center;padding:2px 0;border-bottom:1px solid var(--line);}
+.mp-screen .mp-row:last-child{border-bottom:none;}
+.mp-screen .mp-btn{background:#16A34A;color:#fff;text-align:center;border-radius:4px;padding:3px;font-weight:700;font-size:5.5px;margin-top:3px;}
+.mp-screen .mp-pill{display:inline-block;background:var(--brand-pale);color:var(--brand-deep);font-size:5px;padding:1px 4px;border-radius:3px;font-weight:700;}
 
 .divider{height:1px;background:var(--line);margin:40px 0;}
 
@@ -233,46 +253,120 @@ footer a{color:var(--brand-deep);}
     <p class="subtitle">Semua yang perlu kamu tau buat pakai Family Finance.</p>
 
     <div class="feature-grid">
+
       <div class="feature-card">
-        <div class="icon">📊</div>
-        <h3>Dashboard</h3>
-        <p>Lihat total pengeluaran vs budget di halaman utama. Pilih periode: mingguan, bulanan, atau custom.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">📊 Dashboard</div>
+          <div class="mp-card">
+            <div style="display:flex;justify-content:space-between;">
+              <div><div class="mp-label">Total Keluar</div><div class="mp-val">Rp 2.930rb</div></div>
+              <div style="text-align:right"><div class="mp-label">Total Budget</div><div class="mp-val">Rp 6.200rb</div></div>
+            </div>
+          </div>
+          <div class="mp-card">
+            <div class="mp-label">Per Kategori</div>
+            <div style="margin-top:2px">🛒 Makanan <span style="float:right;font-weight:700">Rp 470rb</span></div>
+            <div class="mp-bar"><i style="width:24%"></i></div>
+            <div style="margin-top:3px">🏠 Tagihan <span style="float:right;font-weight:700">Rp 1.200rb</span></div>
+            <div class="mp-bar"><i class="warn" style="width:80%"></i></div>
+          </div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Dashboard</h3>
+          <p>Lihat total pengeluaran vs budget di halaman utama. Pilih periode: mingguan, bulanan, atau custom.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <div class="icon">📁</div>
-        <h3>Kategori</h3>
-        <p>Bikin kategori pengeluaran (misal: Makan, Transport, Listrik). Set budget per kategori biar gak over.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">➕ Catat Pengeluaran</div>
+          <div class="mp-card">
+            <div class="mp-label">Tanggal</div><div class="mp-val">10/07/2026</div>
+            <div class="mp-label" style="margin-top:3px">Kategori</div><div class="mp-val">🛒 Makanan & Dapur</div>
+            <div class="mp-label" style="margin-top:3px">Jumlah (Rp)</div><div class="mp-val">75.000</div>
+            <div class="mp-label" style="margin-top:3px">Keterangan</div><div style="color:var(--ink-faint)">Belanja sayur</div>
+            <div class="mp-btn">💾 Simpan Pengeluaran</div>
+          </div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Catat Transaksi</h3>
+          <p>Pilih kategori, isi nominal, tambah catatan kalau perlu. Cuma 3 detik.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <div class="icon">💸</div>
-        <h3>Catat Transaksi</h3>
-        <p>Tap "+" buat catat pengeluaran. Pilih kategori, isi nominal, tambah catatan kalau perlu.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">📂 Kategori</div>
+          <div class="mp-card">
+            <div class="mp-row"><span>🏠 Tagihan Rumah</span><span class="mp-pill">Rp 1.5jt/bln</span></div>
+            <div class="mp-row"><span>🎓 Pendidikan</span><span class="mp-pill">Rp 1jt/bln</span></div>
+            <div class="mp-row"><span>💊 Kesehatan</span><span class="mp-pill">Rp 500rb/bln</span></div>
+            <div class="mp-row"><span>🛒 Makanan</span><span class="mp-pill">Rp 2jt/bln</span></div>
+          </div>
+          <div class="mp-btn">✅ Tambah Kategori</div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Kategori & Budget</h3>
+          <p>Bikin kategori sendiri, set budget per bulan. Auto diingetin kalau mepet limit.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <div class="icon">📈</div>
-        <h3>Progres Budget</h3>
-        <p>Tiap kategori ada progress bar. Hijau = aman, kuning = hampir limit, merah = over budget.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">📋 Transaksi</div>
+          <div class="mp-card">
+            <div style="display:flex;gap:4px;margin-bottom:3px;"><span class="mp-pill">📋 Daftar</span><span class="mp-pill" style="background:var(--brand);color:#fff;">📅 Harian</span></div>
+            <div style="font-size:5px;color:var(--ink-faint);margin-bottom:2px;">📍 Hari ini — <b style="color:var(--danger)">-Rp 195rb</b></div>
+            <div class="mp-row"><span>🛒 Sayur & buah</span><span style="font-weight:700;color:var(--danger)">-120rb</span></div>
+            <div class="mp-row"><span>🚗 Parkir & tol</span><span style="font-weight:700;color:var(--danger)">-80rb</span></div>
+            <div style="font-size:5px;color:var(--ink-faint);margin-top:2px;">🕐 Kemarin — <b style="color:var(--danger)">-Rp 350rb</b></div>
+            <div class="mp-row"><span>🛒 Belanja bulanan</span><span style="font-weight:700;color:var(--danger)">-350rb</span></div>
+          </div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Riwayat Transaksi</h3>
+          <p>Lihat per hari atau daftar, lengkap dengan summary total dan terbesar.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <div class="icon">📅</div>
-        <h3>Periode Fleksibel</h3>
-        <p>Ganti tampilan ke mingguan, bulanan, atau tanggal custom. Budget otomatis dihitung proporsional.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">👤 Profil</div>
+          <div class="mp-card">
+            <div style="text-align:center;margin-bottom:3px;">👤<br><b>Nama Kamu</b><br><span style="color:var(--ink-faint)">kamu@email.com</span></div>
+          </div>
+          <div class="mp-card">
+            <div class="mp-label">💾 Backup Data</div>
+            <div style="margin-top:2px;color:var(--ink-soft);">Export semua data ke file JSON</div>
+            <div class="mp-btn">📤 Export Data</div>
+          </div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Backup & Export</h3>
+          <p>Export data ke file JSON. Import lagi kapan aja buat pindah device atau restore.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <div class="icon">💾</div>
-        <h3>Backup & Export</h3>
-        <p>Dari menu Profil, export data ke file JSON. Bisa di-import lagi kapan aja buat pindah device atau restore.</p>
+        <div class="mini-phone"><div class="mp-frame"><div class="mp-screen">
+          <div class="mp-hdr">📈 Progres Budget</div>
+          <div class="mp-card">
+            <div>🛒 Makanan <span style="float:right">24%</span></div>
+            <div class="mp-bar"><i style="width:24%"></i></div>
+            <div style="margin-top:3px">🏠 Tagihan <span style="float:right">80%</span></div>
+            <div class="mp-bar"><i class="warn" style="width:80%"></i></div>
+            <div style="margin-top:3px">🎓 Pendidikan <span style="float:right">105%</span></div>
+            <div class="mp-bar"><i class="danger" style="width:100%"></i></div>
+            <div style="margin-top:3px">🚗 Transport <span style="float:right">45%</span></div>
+            <div class="mp-bar"><i style="width:45%"></i></div>
+          </div>
+        </div></div></div>
+        <div class="fc-text">
+          <h3>Progres Budget</h3>
+          <p>Hijau = aman, kuning = hampir limit, merah = over budget. Keliatan jelas di dashboard.</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">📱</div>
-        <h3>PWA / Add to Home</h3>
-        <p>Install ke home screen biar bisa dibuka kayak app native. Cepat, ringan, tanpa download dari Play Store.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">🔒</div>
-        <h3>Privasi</h3>
-        <p>Versi offline = data 100% di device kamu. Versi online = data di cloud, cuma kamu yang bisa akses.</p>
-      </div>
+
     </div>
   </div>
 

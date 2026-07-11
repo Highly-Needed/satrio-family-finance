@@ -1,6 +1,6 @@
 /*
 Storage adapter contract. Each entry point (online/offline) must set
-`window.Storage` to an object implementing this shape before calling
+`window.DataStore` to an object implementing this shape before calling
 bootApp() from app-core.js.
 
 online/storage-supabase.js  -> backed by Supabase (multi-device sync)
@@ -9,7 +9,7 @@ offline/storage-local.js    -> backed by IndexedDB (single device, no network)
 Category = { id, emoji, name, budget }
 Transaction = { id, category_id, amount, date, note }
 
-window.Storage = {
+window.DataStore = {
   async loadData()                         -> { categories: Category[], transactions: Transaction[] }
   async addCategory({emoji,name,budget})   -> Category (with id assigned)
   async updateCategory(id, {emoji,name,budget}) -> void

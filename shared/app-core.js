@@ -1,6 +1,6 @@
 /* Shared UI/render logic for Family Finance.
-   Talks to data exclusively through window.Storage (see storage-api.js).
-   Entry points (online/offline) must set window.Storage before calling bootApp(). */
+   Talks to data exclusively through window.DataStore (see storage-api.js).
+   Entry points (online/offline) must set window.DataStore before calling bootApp(). */
 
 let cats=[],txs=[];
 let hP={type:'monthly',mo:0,cs:'',ce:''};
@@ -19,7 +19,7 @@ function sync(s){const d=document.getElementById('syncDot');if(d)d.className='sy
 async function bootApp(){
   sync('syncing');
   try{
-    const data=await window.Storage.loadData();
+    const data=await window.DataStore.loadData();
     cats=data.categories||[];txs=data.transactions||[];
     sync('ok');
   }catch(e){sync('error');toast('⚠️ Gagal memuat: '+e.message);}
@@ -109,7 +109,7 @@ async function addTx(){
   if(!date||!catId||!amount||amount<=0){toast('⚠️ Isi tanggal, kategori, dan jumlah dulu!');return;}
   sync('syncing');
   try{
-    const created=await window.Storage.addTransaction({category_id:catId,amount,date,note});
+    const created=await window.DataStore.addTransaction({category_id:catId,amount,date,note});
     txs.unshift(created);
     document.getElementById('txAmt').value='';document.getElementById('txNote').value='';
     toast('✅ Berhasil dicatat!');sync('ok');ra();
@@ -120,7 +120,7 @@ async function delTx(id){
   if(!confirm('Hapus transaksi ini?'))return;
   sync('syncing');
   try{
-    await window.Storage.deleteTransaction(id);
+    await window.DataStore.deleteTransaction(id);
     txs=txs.filter(t=>t.id!=id);sync('ok');ra();toast('🗑 Dihapus');
   }catch(e){sync('error');toast('❌ Gagal');}
 }
@@ -249,7 +249,7 @@ async function saveEditCat(){
   if(!name){toast('⚠️ Isi nama kategori!');return;}
   sync('syncing');
   try{
-    await window.Storage.updateCategory(id,{emoji,name,budget});
+    await window.DataStore.updateCategory(id,{emoji,name,budget});
     const idx=cats.findIndex(c=>c.id==id);
     if(idx>-1)cats[idx]={...cats[idx],emoji,name,budget};
     closeModal('modalCat');
@@ -277,7 +277,7 @@ async function saveEditTx(){
   if(!date||!category_id||!amount||amount<=0){toast('⚠️ Isi semua field!');return;}
   sync('syncing');
   try{
-    await window.Storage.updateTransaction(id,{date,category_id,amount,note});
+    await window.DataStore.updateTransaction(id,{date,category_id,amount,note});
     const idx=txs.findIndex(t=>t.id==id);
     if(idx>-1)txs[idx]={...txs[idx],date,category_id,amount,note};
     closeModal('modalTx');
@@ -300,7 +300,7 @@ async function addCat(){
   if(cats.find(c=>c.name.toLowerCase()===name.toLowerCase())){toast('⚠️ Kategori sudah ada!');return;}
   sync('syncing');
   try{
-    const created=await window.Storage.addCategory({emoji,name,budget});
+    const created=await window.DataStore.addCategory({emoji,name,budget});
     cats.push(created);
     document.getElementById('cEmoji').value='';document.getElementById('cName').value='';document.getElementById('cBudget').value='';
     toast('✅ Kategori ditambahkan!');sync('ok');ra();
@@ -311,7 +311,7 @@ async function delCat(id){
   if(!confirm('Hapus kategori ini?'))return;
   sync('syncing');
   try{
-    await window.Storage.deleteCategory(id);
+    await window.DataStore.deleteCategory(id);
     cats=cats.filter(c=>c.id!=id);sync('ok');ra();toast('🗑 Kategori dihapus');
   }catch(e){sync('error');toast('❌ Gagal');}
 }

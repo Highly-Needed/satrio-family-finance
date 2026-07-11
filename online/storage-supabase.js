@@ -1,6 +1,6 @@
 /* Storage adapter backed by Supabase (multi-device sync). Requires global `sb` client
    to be initialized before this file runs (see online/index.html). */
-window.Storage = {
+window.DataStore = {
   async loadData(){
     const {data:c,error:ce} = await sb.from('categories').select('*').order('created_at');
     if(ce) throw ce;

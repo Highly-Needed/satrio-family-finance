@@ -18,7 +18,7 @@ function openDB(){
 function store(db,name,mode){return db.transaction(name,mode).objectStore(name);}
 function toPromise(req){return new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
 
-window.Storage = {
+window.DataStore = {
   async loadData(){
     const db=await openDB();
     const categories=await toPromise(store(db,'categories','readonly').getAll());

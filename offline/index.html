@@ -205,6 +205,10 @@ window.onload=()=>{
     document.getElementById('licenseScreen').style.display='flex';
   }
 };
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/offline/sw.js',{scope:'/offline/'});
+}
 </script>
 </body>
 </html>

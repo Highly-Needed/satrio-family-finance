@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="FF">
 <meta name="theme-color" content="#16A34A">
-<link rel="manifest" href="../manifest.json">
-<link rel="apple-touch-icon" href="../icon-192.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <title>Family Finance</title>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
@@ -18,7 +18,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="/shared/app.css">
 </head>
 <body>
 
@@ -183,9 +183,9 @@ const sb=supabase.createClient(_url,_key);
 
 document.getElementById('buyLink').href = 'https://kahayakreativ.myscalev.com/familyfinance';
 </script>
-<script src="../shared/storage-api.js"></script>
-<script src="storage-supabase.js"></script>
-<script src="../shared/app-core.js"></script>
+<script src="/shared/storage-api.js"></script>
+<script src="/online/storage-supabase.js"></script>
+<script src="/shared/app-core.js"></script>
 <script>
 let authMode='login';
 function switchTab(m){

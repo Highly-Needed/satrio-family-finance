@@ -7,10 +7,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="FF">
 <meta name="theme-color" content="#16A34A">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="/offline/manifest.json">
+<link rel="apple-touch-icon" href="/offline/icon-192.png">
 <title>Family Finance (Offline)</title>
-<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="/shared/app.css">
 </head>
 <body>
 
@@ -165,9 +165,9 @@ function getDeviceFingerprint(){
   return fp;
 }
 </script>
-<script src="../shared/storage-api.js"></script>
-<script src="storage-local.js"></script>
-<script src="../shared/app-core.js"></script>
+<script src="/shared/storage-api.js"></script>
+<script src="/offline/storage-local.js"></script>
+<script src="/shared/app-core.js"></script>
 <script>
 function showLicenseMsg(msg){const el=document.getElementById('licenseMsg');el.textContent=msg;el.className='auth-msg error';}
 

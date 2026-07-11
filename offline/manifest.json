@@ -3,6 +3,7 @@
   "short_name": "FF Offline",
   "description": "Aplikasi pencatatan keuangan keluarga — versi offline, data tersimpan di device",
   "start_url": "./index.html",
+  "scope": "/offline",
   "display": "standalone",
   "background_color": "#F0FDF4",
   "theme_color": "#16A34A",

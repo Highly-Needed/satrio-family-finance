@@ -11,14 +11,6 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Family Finance</title>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script>
-// Hapus semua service worker lama
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    regs.forEach(reg => reg.unregister());
-  });
-}
-</script>
 <style>
 :root{--primary:#16A34A;--pmid:#22C55E;--plight:#DCFCE7;--pxlight:#F0FDF4;--danger:#EF4444;--dlight:#FEF2F2;--warning:#F59E0B;--bg:#F0FDF4;--card:#fff;--text:#14532D;--textl:#6B7280;--border:#D1FAE5;--r:16px;--shadow:0 2px 16px rgba(22,163,74,.10);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}

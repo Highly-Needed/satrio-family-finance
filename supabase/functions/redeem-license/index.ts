@@ -1,9 +1,6 @@
 // Supabase Edge Function: redeem-license
 // Called by both online/index.html (authenticated, via sb.functions.invoke)
 // and offline/index.html (anon, via plain fetch with the anon apikey).
-//
-// Deploy: supabase functions deploy redeem-license
-// Not deployed yet — see plan open items (needs Supabase CLI access).
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 
@@ -13,11 +10,25 @@ const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    },
   });
 }
 
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+      },
+    });
+  }
+
   if (req.method !== "POST") return json({ ok: false, message: "Method not allowed" }, 405);
 
   let payload: { key?: string; product?: string; device_fingerprint?: string };

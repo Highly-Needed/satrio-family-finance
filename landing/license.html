@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cek Lisensi & Panduan — Family Finance</title>
+<meta name="description" content="Cek kode lisensi Family Finance dan panduan lengkap cara aktivasi dan pemakaian app.">
+<style>
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/courier-prime-400.woff2') format('woff2');}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/courier-prime-700.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('fonts/jakarta-sans-var.woff2') format('woff2');}
+
+:root{
+  --bg:#F6F7F1;--bg-alt:#EDF1E6;--surface:#FFFFFF;
+  --ink:#16301F;--ink-soft:#4B5B4E;--ink-faint:#7C8A7A;
+  --brand:#16A34A;--brand-deep:#0F6B32;--brand-pale:#DCFCE7;
+  --line:#D7DECC;--line-strong:#B9C4AC;
+  --shadow:0 18px 40px -22px rgba(15,60,30,.35);--radius:22px;
+  --danger:#DC2626;--danger-pale:#FEF2F2;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F150D;--bg-alt:#151D11;--surface:#1A2416;
+    --ink:#EAF3E6;--ink-soft:#A6B7A1;--ink-faint:#75876F;
+    --brand:#3ED66F;--brand-deep:#2AAE5B;--brand-pale:#1D3323;
+    --line:#2B3826;--line-strong:#3C4C34;
+    --shadow:0 18px 40px -22px rgba(0,0,0,.6);
+    --danger:#F87171;--danger-pale:#2D1515;
+  }
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
+::selection{background:var(--brand);color:#fff;}
+a{color:var(--brand-deep);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-family:'Courier Prime',monospace;font-weight:700;color:var(--ink);}
+.eyebrow{font-family:'Courier Prime',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-deep);display:inline-flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:22px;height:1.5px;background:var(--brand-deep);display:inline-block;}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:720px;margin:0 auto;}
+.brand-name{font-family:'Courier Prime',monospace;font-weight:700;font-size:1.05rem;}
+.nav-links{display:flex;gap:20px;font-size:.88rem;font-weight:600;color:var(--ink-soft);}
+.nav-links a{text-decoration:none;transition:color .15s;}
+.nav-links a:hover{color:var(--brand-deep);}
+
+/* hero */
+.hero{padding:60px 0 40px;text-align:center;}
+.hero h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin:16px 0 12px;}
+.hero p{font-size:1.05rem;color:var(--ink-soft);max-width:50ch;margin:0 auto;}
+
+/* card */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card-sm{padding:20px;}
+
+/* license check */
+.license-form{display:flex;gap:10px;margin-top:20px;}
+.license-form input{flex:1;padding:14px 16px;border:1.5px solid var(--line-strong);border-radius:12px;font-size:1rem;background:var(--bg);color:var(--ink);outline:none;font-family:inherit;}
+.license-form input:focus{border-color:var(--brand);}
+.license-form button{padding:14px 24px;border:none;border-radius:12px;background:var(--brand);color:#fff;font-size:.95rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .15s;}
+.license-form button:hover{background:var(--brand-deep);}
+.license-form button:disabled{opacity:.5;cursor:not-allowed;}
+
+.result{margin-top:16px;display:none;}
+.result.show{display:block;}
+.license-card{background:var(--brand-pale);border:1.5px dashed var(--brand);border-radius:14px;padding:18px;margin-bottom:10px;}
+.license-key{font-family:'Courier Prime',monospace;font-size:1.4rem;font-weight:700;letter-spacing:.08em;color:var(--brand-deep);word-break:break-all;}
+.license-meta{font-size:.85rem;color:var(--ink-soft);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap;}
+.license-meta .tag{padding:3px 10px;border-radius:6px;font-weight:700;font-size:.78rem;text-transform:uppercase;}
+.tag-online{background:#DBEAFE;color:#1D4ED8;}
+.tag-offline{background:#FEF3C7;color:#92400E;}
+.tag-unused{background:var(--brand-pale);color:var(--brand-deep);}
+.tag-redeemed{background:var(--danger-pale);color:var(--danger);}
+.err-msg{background:var(--danger-pale);color:var(--danger);padding:14px 18px;border-radius:12px;font-size:.95rem;font-weight:600;}
+.info-msg{background:var(--brand-pale);color:var(--brand-deep);padding:14px 18px;border-radius:12px;font-size:.95rem;font-weight:600;}
+.copy-btn{margin-top:8px;padding:6px 14px;border:1.5px solid var(--brand);border-radius:8px;background:transparent;color:var(--brand-deep);font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.copy-btn:hover{background:var(--brand);color:#fff;}
+
+/* tutorial sections */
+.section{padding:40px 0;}
+.section h2{font-size:1.5rem;margin-bottom:6px;}
+.section .subtitle{color:var(--ink-soft);margin-bottom:24px;}
+.step{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0;font-family:'Courier Prime',monospace;}
+.step-body h3{font-size:1rem;margin-bottom:4px;}
+.step-body p{color:var(--ink-soft);font-size:.95rem;}
+.step-body code{font-family:'Courier Prime',monospace;background:var(--bg-alt);padding:2px 8px;border-radius:6px;font-size:.88rem;}
+
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:600px){.feature-grid{grid-template-columns:1fr;}}
+.feature-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;}
+.feature-card .icon{font-size:1.6rem;margin-bottom:8px;}
+.feature-card h3{font-size:.95rem;margin-bottom:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;}
+.feature-card p{font-size:.85rem;color:var(--ink-soft);}
+
+.divider{height:1px;background:var(--line);margin:40px 0;}
+
+/* footer */
+footer{padding:30px 0;text-align:center;font-size:.85rem;color:var(--ink-faint);}
+footer a{color:var(--brand-deep);}
+
+/* toc */
+.toc{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 30px;justify-content:center;}
+.toc a{padding:9px 16px;border-radius:10px;border:1.5px solid var(--line-strong);font-size:.88rem;font-weight:600;color:var(--ink-soft);text-decoration:none;transition:all .15s;}
+.toc a:hover{border-color:var(--brand);color:var(--brand-deep);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand-name">Family Finance</div>
+    <div class="nav-links">
+      <a href="#cek-lisensi">Cek Lisensi</a>
+      <a href="#aktivasi">Aktivasi</a>
+      <a href="#panduan">Panduan</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Pasca Pembelian</div>
+    <h1>Terima kasih sudah membeli!</h1>
+    <p>Cek kode lisensi kamu di bawah, lalu ikuti panduan singkat buat mulai pakai Family Finance.</p>
+  </div>
+
+  <div class="toc">
+    <a href="#cek-lisensi">1. Cek Lisensi</a>
+    <a href="#aktivasi">2. Aktivasi</a>
+    <a href="#panduan">3. Panduan App</a>
+  </div>
+
+  <!-- CEK LISENSI -->
+  <div class="section" id="cek-lisensi">
+    <h2>Cek Kode Lisensi</h2>
+    <p class="subtitle">Masukkan email yang kamu pakai waktu checkout di Scalev.</p>
+
+    <div class="card">
+      <div class="license-form">
+        <input type="email" id="emailInput" placeholder="email@kamu.com" inputmode="email">
+        <button id="checkBtn" onclick="checkLicense()">Cek Lisensi</button>
+      </div>
+      <div class="result" id="result"></div>
+      <p style="margin-top:14px;font-size:.85rem;color:var(--ink-faint);">Baru saja bayar? Kode lisensi di-generate otomatis, tunggu maksimal 5 menit lalu coba lagi.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AKTIVASI -->
+  <div class="section" id="aktivasi">
+    <h2>Cara Aktivasi</h2>
+    <p class="subtitle">Ikuti langkah sesuai versi yang kamu beli.</p>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h3 style="color:var(--brand-deep);margin-bottom:14px;">Versi Online (Rp 199.000)</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Buka app</h3>
+          <p>Klik link versi Online yang diberikan setelah pembelian, atau bookmark dari sini.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Daftar / Masuk</h3>
+          <p>Buat akun baru dengan email dan password, atau masuk kalau sudah punya.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Masukkan kode lisensi</h3>
+          <p>Setelah login, akan muncul halaman "Aktifkan Lisensi". Paste kode dari atas, klik Aktifkan. Selesai!</p>
+        </div>
+      </div>
+      <div class="step" style="margin-bottom:0;">
+        <div class="step-num">+</div>
+        <div class="step-body">
+          <h3>Multi-device</h3>
+          <p>Login di HP, tablet, atau laptop lain — data kamu sync otomatis lewat cloud.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="color:#92400E;margin-bottom:14px;">Versi Offline (Rp 99.000)</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Buka app</h3>
+          <p>Klik link versi Offline yang diberikan setelah pembelian.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Masukkan kode lisensi</h3>
+          <p>Langsung muncul halaman lisensi (gak perlu daftar). Paste kode, klik Aktifkan.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Install ke Home Screen</h3>
+          <p>Biar kayak app beneran: di Chrome, tap menu (&#8942;) &rarr; "Add to Home Screen". App bisa dipakai tanpa internet.</p>
+        </div>
+      </div>
+      <div class="step" style="margin-bottom:0;">
+        <div class="step-num">!</div>
+        <div class="step-body">
+          <h3>Single-device</h3>
+          <p>Data tersimpan di device ini aja. Jangan hapus data browser / clear cache, karena data bisa hilang. Rutin export backup dari menu Profil.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PANDUAN APP -->
+  <div class="section" id="panduan">
+    <h2>Panduan Fitur</h2>
+    <p class="subtitle">Semua yang perlu kamu tau buat pakai Family Finance.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Dashboard</h3>
+        <p>Lihat total pengeluaran vs budget di halaman utama. Pilih periode: mingguan, bulanan, atau custom.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📁</div>
+        <h3>Kategori</h3>
+        <p>Bikin kategori pengeluaran (misal: Makan, Transport, Listrik). Set budget per kategori biar gak over.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💸</div>
+        <h3>Catat Transaksi</h3>
+        <p>Tap "+" buat catat pengeluaran. Pilih kategori, isi nominal, tambah catatan kalau perlu.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h3>Progres Budget</h3>
+        <p>Tiap kategori ada progress bar. Hijau = aman, kuning = hampir limit, merah = over budget.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📅</div>
+        <h3>Periode Fleksibel</h3>
+        <p>Ganti tampilan ke mingguan, bulanan, atau tanggal custom. Budget otomatis dihitung proporsional.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💾</div>
+        <h3>Backup & Export</h3>
+        <p>Dari menu Profil, export data ke file JSON. Bisa di-import lagi kapan aja buat pindah device atau restore.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📱</div>
+        <h3>PWA / Add to Home</h3>
+        <p>Install ke home screen biar bisa dibuka kayak app native. Cepat, ringan, tanpa download dari Play Store.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔒</div>
+        <h3>Privasi</h3>
+        <p>Versi offline = data 100% di device kamu. Versi online = data di cloud, cuma kamu yang bisa akses.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>FAQ</h2>
+
+    <div class="card card-sm" style="margin-bottom:12px;">
+      <h3 style="font-size:.95rem;">Kode lisensi belum muncul?</h3>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Kode di-generate otomatis setelah pembayaran terverifikasi. Tunggu maksimal 5 menit, lalu cek ulang dengan email yang sama.</p>
+    </div>
+    <div class="card card-sm" style="margin-bottom:12px;">
+      <h3 style="font-size:.95rem;">Bisa pindah dari Offline ke Online?</h3>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Bisa. Export data dari versi Offline (menu Profil &rarr; Export), lalu import di versi Online. Kode lisensi terpisah — perlu beli versi Online kalau belum punya.</p>
+    </div>
+    <div class="card card-sm" style="margin-bottom:12px;">
+      <h3 style="font-size:.95rem;">Hapus cache browser, data hilang?</h3>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Versi Offline: ya, karena data di IndexedDB browser. Makanya rutin backup. Versi Online: aman, data di cloud.</p>
+    </div>
+    <div class="card card-sm">
+      <h3 style="font-size:.95rem;">Butuh bantuan?</h3>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Hubungi kami via WhatsApp di link yang ada di email konfirmasi pembelian.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Family Finance &mdash; <a href="index.html">Kembali ke halaman utama</a></p>
+  </div>
+</footer>
+
+<script>
+const CHECK_URL = 'https://wxwkguqihpphgswbsfme.supabase.co/functions/v1/check-license';
+
+async function checkLicense() {
+  const email = document.getElementById('emailInput').value.trim();
+  const btn = document.getElementById('checkBtn');
+  const result = document.getElementById('result');
+
+  if (!email) { result.innerHTML = '<div class="err-msg">Masukkan email dulu.</div>'; result.className = 'result show'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Mengecek...';
+  result.className = 'result';
+
+  try {
+    const res = await fetch(CHECK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+
+    if (!data.ok) {
+      result.innerHTML = `<div class="err-msg">${data.message}</div>`;
+    } else {
+      let html = '';
+      for (const lic of data.licenses) {
+        const productTag = lic.product === 'online'
+          ? '<span class="tag tag-online">Online</span>'
+          : lic.product === 'offline'
+            ? '<span class="tag tag-offline">Offline</span>'
+            : '<span class="tag" style="background:var(--bg-alt);">—</span>';
+        const statusTag = lic.status === 'unused'
+          ? '<span class="tag tag-unused">Belum dipakai</span>'
+          : '<span class="tag tag-redeemed">Sudah aktif</span>';
+
+        html += `
+          <div class="license-card">
+            <div class="license-key" id="key-${lic.key}">${lic.key}</div>
+            <div class="license-meta">${productTag} ${statusTag}</div>
+            <button class="copy-btn" onclick="copyKey('${lic.key}', this)">Salin kode</button>
+          </div>`;
+      }
+      result.innerHTML = html;
+    }
+  } catch (e) {
+    result.innerHTML = '<div class="err-msg">Gagal menghubungi server. Coba lagi nanti.</div>';
+  }
+
+  result.className = 'result show';
+  btn.disabled = false;
+  btn.textContent = 'Cek Lisensi';
+}
+
+function copyKey(key, btn) {
+  navigator.clipboard.writeText(key).then(() => {
+    btn.textContent = 'Tersalin!';
+    setTimeout(() => { btn.textContent = 'Salin kode'; }, 2000);
+  });
+}
+
+document.getElementById('emailInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') checkLicense();
+});
+</script>
+</body>
+</html>

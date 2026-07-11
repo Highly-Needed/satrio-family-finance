@@ -12,7 +12,8 @@
     {
       "source": "/offline/sw.js",
       "headers": [
-        { "key": "Service-Worker-Allowed", "value": "/offline" }
+        { "key": "Service-Worker-Allowed", "value": "/offline" },
+        { "key": "Cache-Control", "value": "no-store" }
       ]
     }
   ]

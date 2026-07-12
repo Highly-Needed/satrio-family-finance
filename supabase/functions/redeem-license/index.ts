@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
     return json({ ok: false, message: "Body tidak valid" }, 400);
   }
 
-  const key = (payload.key || "").trim();
+  const key = (payload.key || "").trim().toUpperCase();
   const product = payload.product;
   const deviceFingerprint = payload.device_fingerprint || null;
 

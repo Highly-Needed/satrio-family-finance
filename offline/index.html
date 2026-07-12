@@ -27,7 +27,7 @@
   <div class="auth-sub">Masukkan kode lisensi buat aktifkan app di device ini (butuh internet sekali aja)</div>
   <div class="auth-card">
     <div class="auth-msg" id="licenseMsg"></div>
-    <div class="fg"><label class="fl">Kode Lisensi</label><input type="text" class="fi" id="licenseKey" placeholder="XXXX-XXXX-XXXX-XXXX"></div>
+    <div class="fg"><label class="fl">Kode Lisensi</label><input type="text" class="fi" id="licenseKey" placeholder="XXXX-XXXX-XXXX-XXXX" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false"></div>
     <button class="btn btn-p" id="licenseBtn" onclick="redeemLicense()">🔓 Aktifkan</button>
     <p style="font-size:12px;color:var(--textl);text-align:center;margin-top:14px">Belum punya lisensi? <a href="#" id="buyLink" target="_blank" style="color:var(--primary);font-weight:700">Beli di sini</a></p>
   </div>
@@ -172,7 +172,7 @@ function getDeviceFingerprint(){
 function showLicenseMsg(msg){const el=document.getElementById('licenseMsg');el.textContent=msg;el.className='auth-msg error';}
 
 async function redeemLicense(){
-  const key=document.getElementById('licenseKey').value.trim();
+  const key=document.getElementById('licenseKey').value.trim().toUpperCase();
   if(!key){showLicenseMsg('Masukkan kode lisensi dulu!');return;}
   const btn=document.getElementById('licenseBtn');btn.textContent='Memproses...';btn.disabled=true;
   try{

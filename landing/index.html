@@ -370,6 +370,19 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);}
 .appshots .mnav a.on{color:#16A34A;}
 .appshots .mnav svg{width:13px;height:13px;}
 </style>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1606604827647794');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1606604827647794&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
@@ -686,7 +699,7 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);}
           <li><span class="ck">✓</span> Export backup kapan aja</li>
           <li><span class="ck">✓</span> Aktivasi sekali, pakai selamanya</li>
         </ul>
-        <a href="https://kahayakreativ.myscalev.com/familyfinance" class="btn btn-primary">Pilih Offline</a>
+        <a href="https://kahayakreativ.myscalev.com/familyfinance" class="btn btn-primary" onclick="fbq('track','AddToCart',{content_name:'Family Finance Offline',content_ids:['variant_Mj0wSBgSZ5iDHoPWn2hwxDB9'],content_type:'product',value:99000,currency:'IDR'})">Pilih Offline</a>
       </div>
       <div class="price-card featured">
         <span class="price-tag">Online</span>
@@ -701,7 +714,7 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);}
           <li><span class="ck">✓</span> Cocok dipakai bareng pasangan</li>
           <li><span class="ck">✓</span> Aktivasi sekali, pakai selamanya</li>
         </ul>
-        <a href="https://kahayakreativ.myscalev.com/familyfinance" class="btn btn-primary">Pilih Online</a>
+        <a href="https://kahayakreativ.myscalev.com/familyfinance" class="btn btn-primary" onclick="fbq('track','AddToCart',{content_name:'Family Finance Online',content_ids:['variant_OYtN-AjBEesIGm5BjX1TSjV0'],content_type:'product',value:199000,currency:'IDR'})">Pilih Online</a>
       </div>
     </div>
   </div>

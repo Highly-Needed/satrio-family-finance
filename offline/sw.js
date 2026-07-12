@@ -1,7 +1,6 @@
-const CACHE_NAME = 'ff-offline-shell-v1';
+const CACHE_NAME = 'ff-offline-shell-v2';
 const SHELL_ASSETS = [
-  '/offline/',
-  '/offline/index.html',
+  '/offline',
   '/offline/manifest.json',
   '/offline/storage-local.js',
   '/offline/icon-192.png',
